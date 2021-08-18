@@ -14,7 +14,7 @@ class MapSample extends StatefulWidget {
 class MapSampleState extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
 
-  CameraPosition _kGooglePlex;
+  CameraPosition initLocation;
 
   static final CameraPosition _kLake = CameraPosition(
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -23,7 +23,7 @@ class MapSampleState extends State<MapSample> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    CameraPosition(
+    initLocation=CameraPosition(
       target: LatLng(double.parse(widget.userLocation.lat),
           double.parse(widget.userLocation.lng)),
       zoom: 14.4746,
@@ -35,7 +35,7 @@ class MapSampleState extends State<MapSample> {
     return new Scaffold(
       body: GoogleMap(
         mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
+        initialCameraPosition: initLocation,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
